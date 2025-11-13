@@ -7,7 +7,7 @@ define('DB_PASSWORD', '');
 define('DB_CHARSET', 'utf8mb4');
 
 // Configuración de rutas base
-define('BASE_URL', 'http://localhost/hotelesAPI/');
+define('BASE_URL', 'http:8080//localhost/AdminHotel/');
 
 define('BASE_PATH', __DIR__ . '/../');
 
