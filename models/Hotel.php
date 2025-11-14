@@ -52,5 +52,33 @@ class Hotel {
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
+     // Buscar hoteles por nombre / dirección / tipo de habitación
+     public function buscarHoteles($search)
+     {
+         $sql = "SELECT * FROM hoteles 
+                 WHERE nombre LIKE ? 
+                 OR direccion LIKE ?
+                 OR tipos_habitacion LIKE ?";
+ 
+         $stmt = $this->conexion->prepare($sql);
+ 
+         if (!$stmt) {
+             return [];
+         }
+ 
+         $param = "%$search%";
+         $stmt->bind_param("sss", $param, $param, $param);
+ 
+         $stmt->execute();
+         $result = $stmt->get_result();
+ 
+         $hoteles = [];
+ 
+         while ($row = $result->fetch_assoc()) {
+             $hoteles[] = $row;
+         }
+ 
+         return $hoteles;
+     }
 }
 ?>
